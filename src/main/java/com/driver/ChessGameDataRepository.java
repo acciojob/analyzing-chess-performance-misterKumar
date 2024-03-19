@@ -12,6 +12,7 @@ public class ChessGameDataRepository {
 
     public void storeChessGame(ChessGame chessGame) {
     	//your code goes here
+        chessGames.add(chessGame);
     }
 
     public List<ChessGame> getAllChessGames() {

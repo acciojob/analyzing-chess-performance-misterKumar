@@ -12,11 +12,15 @@ public class ChessMetricsService {
 
     public double calculateAverageMoves(String playerName) {
     	//your code goes here
+        List<ChessGame> playerGames = getPlayerGames(playerName);
+        int totalMoves = playerGames.stream().mapToInt(ChessGame::getNumberOfMoves).sum();
         return (double) totalMoves / playerGames.size();
     }
 
     public double calculateWinRate(String playerName) {
     	//your code goes here
+        List<ChessGame> playerGames = getPlayerGames(playerName);
+        long wins = playerGames.stream().filter(ChessGame::isWin).count();
         return (double) wins / playerGames.size() * 100;
     }
 
@@ -29,5 +33,11 @@ public class ChessMetricsService {
 
     public void storeChessGameData(ChessGameDTO chessGameDTO) {
     	//your code goes here
+        if (chessGameDTO.getNumberOfMoves() < 0) {
+            System.out.println("Error: Invalid number of moves entered.");
+            return;
+        }
+        System.out.println("Data stored successfully!");
+        chessGameDataRepository.storeChessGame(new ChessGameDataConverter().convertToEntity(chessGameDTO));
     }
 }

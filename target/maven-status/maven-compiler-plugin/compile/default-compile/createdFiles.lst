@@ -1,0 +1,6 @@
+com\driver\ChessMetricsController.class
+com\driver\ChessMetricsService.class
+com\driver\ChessGameDataRepository.class
+com\driver\ChessGame.class
+com\driver\ChessGameDataConverter.class
+com\driver\ChessGameDTO.class

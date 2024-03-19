@@ -14,14 +14,16 @@ public class ChessMetricsService {
     	//your code goes here
         List<ChessGame> playerGames = getPlayerGames(playerName);
         int totalMoves = playerGames.stream().mapToInt(ChessGame::getNumberOfMoves).sum();
-        return (double) totalMoves / playerGames.size();
+        double AvgMoves= (double) totalMoves / playerGames.size();
+        return Double.isNaN(AvgMoves) ? 0.0 : AvgMoves;
     }
 
     public double calculateWinRate(String playerName) {
     	//your code goes here
         List<ChessGame> playerGames = getPlayerGames(playerName);
         long wins = playerGames.stream().filter(ChessGame::isWin).count();
-        return (double) wins / playerGames.size() * 100;
+        double winRate=(double) wins / playerGames.size() * 100;
+        return Double.isNaN(winRate) ? 0.0 : winRate;
     }
 
     private List<ChessGame> getPlayerGames(String playerName) {
